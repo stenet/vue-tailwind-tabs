@@ -1,12 +1,20 @@
 <script setup lang="ts">
+import { ref } from 'vue';
 import MyTab from './components/MyTab.vue';
 import MyTabItem from './components/MyTabItem.vue';
+
+const selectedIndex = ref(0);
 </script>
 
 <template>
-  <div class="p-4">
-    <MyTab>
-      <MyTabItem text="Page 1">
+  <div class="flex flex-col gap-4 p-4">
+    <div>Selected tab {{ selectedIndex }}</div>
+    <div>
+      <button @click="() => (selectedIndex = 7)">select tab 7</button>
+    </div>
+
+    <MyTab v-model:selected-index="selectedIndex">
+      <MyTabItem text="Page 1 🤭">
         <div>Content of Page 1 😉</div>
       </MyTabItem>
       <MyTabItem text="Page 2">

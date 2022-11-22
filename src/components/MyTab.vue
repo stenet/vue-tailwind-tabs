@@ -1,9 +1,15 @@
 <script lang="ts">
-import { h, ref, onMounted, onUnmounted } from 'vue';
+import { computed, h, ref, onMounted, onUnmounted } from 'vue';
 
 export default {
+  props: {
+    selectedIndex: {
+      type: Number,
+      required: false,
+    },
+  },
+  emits: ['update:selectedIndex'],
   setup(props, context) {
-    const selected = ref(0);
     const itemRefs = ref({});
     const tabRef = ref();
     const windowWidth = ref();
@@ -11,6 +17,18 @@ export default {
     const checkWindowResize = () => {
       windowWidth.value = window.innerWidth;
     };
+
+    const selected =
+      props.selectedIndex == void 0
+        ? ref(0)
+        : computed({
+            get() {
+              return props.selectedIndex;
+            },
+            set(newValue) {
+              context.emit('update:selectedIndex', newValue);
+            },
+          });
 
     onMounted(() => {
       window.addEventListener('resize', checkWindowResize);
@@ -39,7 +57,7 @@ export default {
           {
             ref: (el) => (tabRef.value = el),
             class:
-              'relative inline-flex flex-wrap gap-2 bg-neutral-300 rounded p-1',
+              'relative inline-flex flex-wrap gap-1 bg-neutral-200 rounded p-1',
           },
           {
             default: () => [
@@ -49,7 +67,7 @@ export default {
                   {
                     ref: (el) => (itemRefs.value[i] = el),
                     class:
-                      'z-10 outline-neutral-600 rounded outline-neutral-300 hover:bg-neutral-100',
+                      'z-10 outline-neutral-600 rounded outline-neutral-200 hover:bg-white/50',
                     tabIndex: 0,
                     onClick: () => {
                       selected.value = i;
@@ -64,7 +82,7 @@ export default {
                   h(
                     'div',
                     {
-                      class: 'px-2 py-1 text-sm rounded cursor-pointer',
+                      class: 'px-6 py-1 text-sm rounded cursor-pointer',
                     },
                     r.props.text
                   )
@@ -74,7 +92,8 @@ export default {
                 ? h(
                     'div',
                     {
-                      class: 'absolute rounded bg-white transition-all shadow',
+                      class:
+                        'absolute rounded bg-white transition-all duration-300 shadow',
                       style: `left: ${itemRect.left - tabRect.left}px; top: ${
                         itemRect.top - tabRect.top
                       }px; width: ${itemRect.width}px; height: ${

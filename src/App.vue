@@ -15,51 +15,21 @@ const selectedIndex = ref(0);
 
     <div>
       <MyTab v-model:selected-index="selectedIndex">
-        <MyTabItem text="Page 1 🤭">
-          <div>Content of Page 1 😉</div>
-        </MyTabItem>
-        <MyTabItem text="Page 2">
-          <div>Content of Page 2 👏</div>
-        </MyTabItem>
-        <MyTabItem text="Page 3">
-          <div>Content of Page 3 🚀</div>
-        </MyTabItem>
-        <MyTabItem text="Page 4">
-          <div>Content of Page 4 🇪🇸</div>
-        </MyTabItem>
-        <MyTabItem text="Page 5">
-          <div>Content of Page 5 🇨🇭</div>
-        </MyTabItem>
-        <MyTabItem text="Page 6">
-          <div>Content of Page 6 😆</div>
-        </MyTabItem>
-        <MyTabItem text="Page 7">
-          <div>Content of Page 7 😇</div>
-        </MyTabItem>
-        <MyTabItem text="Page 8">
-          <div>Content of Page 8 😬</div>
-        </MyTabItem>
-        <MyTabItem text="Page 9">
-          <div>Content of Page 9 🧐</div>
-        </MyTabItem>
-        <MyTabItem text="Page 10">
-          <div>Content of Page 10 😝</div>
-        </MyTabItem>
-        <MyTabItem text="Page 11">
-          <div>Content of Page 11 🫥</div>
-        </MyTabItem>
-        <MyTabItem text="Page 12">
-          <div>Content of Page 12 🤬</div>
-        </MyTabItem>
-        <MyTabItem text="Page 13">
-          <div>Content of Page 13 👹</div>
-        </MyTabItem>
-        <MyTabItem text="Page 14">
-          <div>Content of Page 14 😈</div>
-        </MyTabItem>
-        <MyTabItem text="Page 15">
-          <div>Content of Page 15 🤢</div>
-        </MyTabItem>
+        <MyTabItem text="Page 1 🤭"> Content of Page 1 😉 </MyTabItem>
+        <MyTabItem text="Page 2"> Content of Page 2 👏 </MyTabItem>
+        <MyTabItem text="Page 3"> Content of Page 3 🚀 </MyTabItem>
+        <MyTabItem text="Page 4"> Content of Page 4 🇪🇸 </MyTabItem>
+        <MyTabItem text="Page 5"> Content of Page 5 🇨🇭 </MyTabItem>
+        <MyTabItem text="Page 6"> Content of Page 6 😆 </MyTabItem>
+        <MyTabItem text="Page 7"> Content of Page 7 😇 </MyTabItem>
+        <MyTabItem text="Page 8"> Content of Page 8 😬 </MyTabItem>
+        <MyTabItem text="Page 9"> Content of Page 9 🧐 </MyTabItem>
+        <MyTabItem text="Page 10"> Content of Page 10 😝 </MyTabItem>
+        <MyTabItem text="Page 11"> Content of Page 11 🫥 </MyTabItem>
+        <MyTabItem text="Page 12"> Content of Page 12 🤬 </MyTabItem>
+        <MyTabItem text="Page 13"> Content of Page 13 👹 </MyTabItem>
+        <MyTabItem text="Page 14"> Content of Page 14 😈 </MyTabItem>
+        <MyTabItem text="Page 15"> Content of Page 15 🤢 </MyTabItem>
       </MyTab>
     </div>
   </div>

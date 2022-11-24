@@ -136,7 +136,11 @@ export default {
           {
             class: 'mt-4',
           },
-          context.slots.default?.().filter((r, i) => i == selected.value)
+          context.slots.default?.().map((r, i) => {
+            return h(r, {
+              style: `${i === selected.value ? '' : 'display:none'}`,
+            });
+          })
         ),
       ];
     };

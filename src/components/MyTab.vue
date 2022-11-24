@@ -51,13 +51,34 @@ export default {
 
       const itemRect = itemRects?.length > 0 ? itemRects[0] : null;
 
+      const itemCount = context.slots.default?.().length ?? 0;
+
       return [
         h(
           'div',
           {
             ref: (el) => (tabRef.value = el),
+            onKeydown: (ev) => {
+              switch (ev.keyCode) {
+                case 37:
+                case 39: {
+                  let newIndex =
+                    ev.keyCode === 37 ? selected.value - 1 : selected.value + 1;
+
+                  if (newIndex < 0) {
+                    newIndex = itemCount - 1;
+                  } else if (newIndex >= itemCount) {
+                    newIndex = 0;
+                  }
+
+                  selected.value = newIndex;
+                  itemRefs.value[newIndex].focus();
+                  break;
+                }
+              }
+            },
             class:
-              'relative inline-flex flex-wrap gap-1 bg-neutral-200 rounded p-1',
+              'relative inline-flex flex-wrap gap-1 bg-neutral-200 rounded p-0.5',
           },
           {
             default: () => [
@@ -67,22 +88,25 @@ export default {
                   {
                     ref: (el) => (itemRefs.value[i] = el),
                     class:
-                      'z-10 outline-neutral-600 rounded outline-neutral-200 hover:bg-white/50',
+                      'z-10 outline-neutral-600 rounded outline-0 hover:bg-white/50 focus:bg-white/50',
                     tabIndex: 0,
                     onClick: () => {
                       selected.value = i;
                     },
                     onKeypress: (ev) => {
-                      console.log('keypress');
-                      if ([13, 32].includes(ev.keyCode)) {
-                        selected.value = i;
+                      switch (ev.keyCode) {
+                        case 13:
+                        case 32: {
+                          selected.value = i;
+                          break;
+                        }
                       }
                     },
                   },
                   h(
                     'div',
                     {
-                      class: 'px-6 py-1 text-sm rounded cursor-pointer',
+                      class: 'px-6 py-2 text-sm rounded cursor-pointer',
                     },
                     r.props.text
                   )
